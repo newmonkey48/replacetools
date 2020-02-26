@@ -1,6 +1,6 @@
 ﻿<html>
 	<head>	
-		<title>替代器</title>
+		<title>Replace Tool</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
 										<div class="form-group">					
 											<div class="fill_item">
 												<div class="item_title">
-													<label>來源資料</label>
+													<label>Source Data</label>
 												</div>
 												<div class="item_content">
 													<div class="row">												
@@ -45,7 +45,7 @@
 										<div class="form-group">					
 											<div class="fill_item">
 												<div class="item_title">
-													<label>搜尋項目(以逗號分割)</label>
+													<label>Search Items(comma splite)</label>
 												</div>
 												<div class="item_content">
 													<input type="text" class="form-control form-control-lg txtSearchItems">
@@ -59,7 +59,7 @@
 										<div class="form-group">					
 											<div class="fill_item">
 												<div class="item_title">
-													<label>替換項目(以逗號分割)</label>
+													<label>Replace Items(comma splite)</label>
 												</div>
 												<div class="item_content">
 													<textarea rows="4" type="text" class="form-control form-control-lg txtReplaceItems"></textarea>
@@ -73,7 +73,7 @@
 										<div class="form-group">					
 											<div class="fill_item">
 												<div class="item_title">
-													<label>目標資料</label>
+													<label>Target Data</label>
 												</div>
 												<div class="item_content">
 													<div class="row">												
@@ -99,7 +99,7 @@
 										<div class="form-group">					
 											<div class="fill_item">
 												<div class="item_title">
-													<label>儲存(請填寫範例名稱)</label>
+													<label>Save(Please Fill Template Name)</label>
 												</div>
 												<div class="item_content">
 													<div class="row">												
@@ -109,7 +109,7 @@
 																	<div class="item_title">
 																	</div>
 																	<div class="item_content input-group">
-																		<input type="text" class="form-control form-control-lg txtName mr-3" placeholder="請填寫名稱">																		
+																		<input type="text" class="form-control form-control-lg txtName mr-3" placeholder="Please Fill Template Name">																		
 																	</div>
 																</div>
 															</div>
@@ -130,9 +130,9 @@
 									<div class="form-group">					
 										<div class="fill_item float-left">
 											<div class="item_content ">												
-												<button type="button" class="btn btn-info btnTrans">取代</button>
-												<button type="button" class="btn btn-info btnClear">清空</button>
-												<button type="button" class="btn btn-info btnSave">儲存範例</button>
+												<button type="button" class="btn btn-info btnTrans">Replace</button>
+												<button type="button" class="btn btn-info btnClear">Clear</button>
+												<button type="button" class="btn btn-info btnSave">Save Template</button>
 											</div>
 										</div>
 									</div>
@@ -141,13 +141,13 @@
 						</div>			
 						<div class="row mr-1 mt-3">
 							<div class="item_title mx-1 mb-1">
-								載入範例
+								Load Template
 							</div>
 							<ul class="list-group col-md-12" id="templateList">
 							    <li class="list-group-item" v-for="(item, index) in items" v-if="item != null">
 								    <div class="input-group col-md-12" >		
-										<button type="button" class="btn btn-info float-left mr-2"  v-on:click="deleteTemplate(index)" style="cursor:pointer">移除</button>	
-                                        <button type="button" class="btn btn-info float-left"  v-on:click="setTemplate(index)" style="cursor:pointer">載入範例</button>									
+										<button type="button" class="btn btn-info float-left mr-2"  v-on:click="deleteTemplate(index)" style="cursor:pointer">Remove</button>	
+                                        <button type="button" class="btn btn-info float-left"  v-on:click="setTemplate(index)" style="cursor:pointer">Load Template</button>									
 										<div class=" ml-3 rounded border px-3 py-2" v-on:click="setTemplate(index)" style="cursor:pointer">{{item.name}}</div>
 									</div>
 							    </li>
