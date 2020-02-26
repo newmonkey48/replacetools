@@ -1,0 +1,299 @@
+<html>
+	<head>	
+		<title>替代器</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+	</head>
+	<body>
+		<div class="main_content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="fill_form border px-lg-3 mt-md-3 rounded">
+							<form class="mt-md-3">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">					
+											<div class="fill_item">
+												<div class="item_title">
+													<label>來源資料</label>
+												</div>
+												<div class="item_content">
+													<div class="row">												
+														<div class="col-md-12">
+															<div class="form-group">
+																<div class="fill_item">
+																	<div class="item_title">
+																	</div>
+																	<div class="item_content">
+																		<textarea rows="4" type="text" class="form-control form-control-lg txtSource"></textarea>
+																	</div>
+																</div>
+															</div>
+														</div>												
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">					
+											<div class="fill_item">
+												<div class="item_title">
+													<label>搜尋項目(以逗號分割)</label>
+												</div>
+												<div class="item_content">
+													<input type="text" class="form-control form-control-lg txtSearchItems">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">					
+											<div class="fill_item">
+												<div class="item_title">
+													<label>替換項目(以逗號分割)</label>
+												</div>
+												<div class="item_content">
+													<textarea rows="4" type="text" class="form-control form-control-lg txtReplaceItems"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">					
+											<div class="fill_item">
+												<div class="item_title">
+													<label>目標資料</label>
+												</div>
+												<div class="item_content">
+													<div class="row">												
+														<div class="col-md-12">
+															<div class="form-group">
+																<div class="fill_item">
+																	<div class="item_title">
+																	</div>
+																	<div class="item_content">
+																		<textarea rows="4" type="text" class="form-control form-control-lg txtTarget"></textarea>
+																	</div>
+																</div>
+															</div>
+														</div>												
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">					
+											<div class="fill_item">
+												<div class="item_title">
+													<label>儲存(請填寫範例名稱)</label>
+												</div>
+												<div class="item_content">
+													<div class="row">												
+														<div class="col-md-12">
+															<div class="form-group">
+																<div class="fill_item">
+																	<div class="item_title">
+																	</div>
+																	<div class="item_content input-group">
+																		<input type="text" class="form-control form-control-lg txtName mr-3" placeholder="請填寫名稱">																		
+																	</div>
+																</div>
+															</div>
+														</div>												
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				    <div class="col-md-5">
+						<div class="row mr-3 p7-3">
+							<div class="fill_form border px-lg-3 pb-lg-3 mt-md-3 rounded col-md-12">
+								<div class="col-md-12">
+									<div class="form-group">					
+										<div class="fill_item float-left">
+											<div class="item_content ">												
+												<button type="button" class="btn btn-info btnTrans">取代</button>
+												<button type="button" class="btn btn-info btnClear">清空</button>
+												<button type="button" class="btn btn-info btnSave">儲存範例</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>			
+						<div class="row mr-1 mt-3">
+							<div class="item_title mx-1 mb-1">
+								載入範例
+							</div>
+							<ul class="list-group col-md-12" id="templateList">
+							    <li class="list-group-item" v-for="(item, index) in items" v-if="item != null">
+								    <div class="input-group col-md-12" >		
+										<button type="button" class="btn btn-info float-left mr-2"  v-on:click="deleteTemplate(index)" style="cursor:pointer">移除</button>	
+                                        <button type="button" class="btn btn-info float-left"  v-on:click="setTemplate(index)" style="cursor:pointer">載入範例</button>									
+										<div class=" ml-3 rounded border px-3 py-2" v-on:click="setTemplate(index)" style="cursor:pointer">{{item.name}}</div>
+									</div>
+							    </li>
+							</ul>
+						</div>		
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#templateList',
+				data: {
+					items: []
+				},
+				methods:{
+					setTemplate: function(index) {
+					    loadTemplate(index);
+					},
+					deleteTemplate: function(index) {
+					    delete templates[index];
+						templates = filter_array(templates);
+						localStorage.Templates = JSON.stringify(templates);
+						this.items = templates;
+					}
+					
+				}
+			});
+			
+			function filter_array(data_array) {
+				var index = -1,
+					arr_length = data_array ? data_array.length : 0,
+					resIndex = -1,
+					result = [];
+
+				while (++index < arr_length) {
+					var value = data_array[index];
+
+					if (value) {
+						result[++resIndex] = value;
+					}
+				}
+
+				return result;
+			}
+		
+		    var templateSource = "Insert Into Country(code,name) values ('KEY_CODE','KEY_NAME');";
+			var templateSearch = "KEY_CODE,KEY_NAME";
+			var templateReplace = "TW,Taiwan\r\nJP,Japan";
+			var templateName = "Insert Country";
+			
+			var templates = [];
+		
+			$(document).ready(function(){
+				if(localStorage.Templates!='' && localStorage.Templates!=undefined ){
+					templates = JSON.parse(localStorage.Templates);
+				} else {
+					templates.push({
+						'replace':templateReplace,
+						'source':templateSource,
+						'search':templateSearch,
+						'name':templateName
+					});
+					
+					localStorage.Templates = JSON.stringify(templates);
+				}
+				
+				app.items = templates;
+			
+				$('.btnTrans').click(function(){
+					trans();
+				});
+				
+				$('.btnLoad').click(function(){
+				    loadTemplate(0);					
+				});
+				
+				$('.btnClear').click(function(){
+					clearTemplate();
+				});
+				
+				$('.btnSave').click(function(){
+					templates.push({
+						'replace':$('.txtReplaceItems').val(),
+						'source':$('.txtSource').val(),
+						'search':$('.txtSearchItems').val(),
+						'name':$('.txtName').val()
+					});
+					
+					localStorage.Templates = JSON.stringify(templates);
+				});
+			});
+			
+			function clearTemplate() {
+				$('.txtSource').val('');
+				$('.txtSearchItems').val('');
+				$('.txtReplaceItems').val('');
+				$('.txtName').val('');
+				$('.txtTarget').val('');
+			}
+			
+			function loadTemplate(index){
+				$('.txtSource').val(templates[index].source);
+				$('.txtSearchItems').val(templates[index].search);
+				$('.txtReplaceItems').val(templates[index].replace);
+				$('.txtName').val(templates[index].name);
+				trans();
+			}
+			
+			function trans(){
+				var objSource = $('.txtSource');
+				var objSearchItems = $('.txtSearchItems');
+				var objReplaceItems = $('.txtReplaceItems');
+				var objTarget = $('.txtTarget');
+				
+				var arrSearchItems = objSearchItems.val().split(',');
+				var arrReplaceItems = objReplaceItems.val().split('\n');
+				var txrOrigin = objSource.val();
+				var txtTarget = '';
+				
+				$.each(arrReplaceItems,function(index,replaceLine){
+					if(replaceLine!=''){
+						var replaceDatas = replaceLine.split(',');
+						
+						var result = txrOrigin;
+						
+						//s_txt，找尋要找尋的資料
+						$.each(arrSearchItems,function(s_index,s_txt){
+						    //r_txt，要取代的資料
+							var r_txt = replaceDatas[s_index];
+							
+							var re = new RegExp(s_txt);
+							//若s_txt 等於要取代的 r_txt，則不處理
+							if(s_txt != r_txt) {
+								while(result.indexOf(s_txt) >= 0) {							   
+									result = result.replace(re,r_txt);								
+								}
+							}							
+						});
+						
+						txtTarget += result +'\r\n';
+					}
+				});
+				
+				objTarget.val(txtTarget);
+			}
+		</script>
+	</body>
+</html>
